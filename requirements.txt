@@ -10,7 +10,6 @@ flake8-bugbear==18.2.0
 flake8-commas==2.0.0
 flake8-import-order==0.18
 flake8-quotes==1.0.0
-Flask==1.0.2
 future==0.16.0
 gapic-google-cloud-datastore-v1==0.15.3
 gapic-google-cloud-error-reporting-v1beta1==0.15.3
@@ -70,7 +69,6 @@ rsa==3.4.2
 six==1.11.0
 slackclient==1.2.1
 slackeventsapi==1.1.0
-texttable==1.4.0
 urllib3==1.23
 websocket-client==0.48.0
 Werkzeug==0.14.1
