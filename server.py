@@ -36,7 +36,8 @@ def handle_message(event_data):
                                        file_link, 'ALL_BASIC')
         msg_to_table = format_message_to_table(check_file)
         print(msg_to_table)
-        CLIENT.api_call('chat.postMessage', channel=channel, text=msg_to_table)
+        CLIENT.api_call('chat.postMessage', channel=channel,
+                        text='```{}```'.format(msg_to_table))
 
 
 slack_events_adapter.start(port=3000)
