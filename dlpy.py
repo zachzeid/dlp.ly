@@ -20,6 +20,7 @@ def inspect_file(project, filename, info_types,
         'info_types': info_types,
         'min_likelihood': min_likelihood,
         'limits': {'max_findings_per_request': max_findings},
+        'include_quote': include_quote,
     }
 
     # I guess a mime_type, but I don't know why.
@@ -35,12 +36,17 @@ def inspect_file(project, filename, info_types,
         headers = {'Authorization': 'Bearer ' +
                    os.environ['TOKEN']}
         r = requests.get(filename, headers=headers, stream=True)
+
         with open(filename.split('/')[-1], 'wb') as f:
             f.write(r.content)
     except Exception as e:
         return e
+    if 'xlsx' in filename.split('/')[-1]:
+        return 'I am unable to read this file.  Please try again.'
+
     with open(filename.split('/')[-1], mode='rb') as f:
-        item = {'byte_item': {'type': content_type_index, 'data': f.read()}}
+        item = {'byte_item': {'type': content_type_index,
+                              'data': f.read()}}
 
     parent = dlp.project_path(project)
     response = dlp.inspect_content(parent, inspect_config, item)
